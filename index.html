@@ -10,17 +10,22 @@
     <title>Shop example</title>
     <style>
         /* additional custom or altered styles */
+        .navbar-brand{
+            color: white !important;
+        }
+        .btn-primary{
+            color: white !important;
+        }
+        .card{
+            width: 100% !important;
+            background-color: #f7f7f7;
+        }
         .items-container{
             padding-right: 30px;
         }
         .shop-container{
             padding: 0;
         }
-        .card{
-            width: 100% !important;
-            background-color: #f7f7f7;
-        }
-
         .items-list{
             line-height: 2;
         }
@@ -64,7 +69,7 @@
   <body>
     <!-- Image and text -->
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand">
         <!-- <img src="https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" width="30" height="30" class="d-inline-block align-top" alt="e-shop mascot"> -->
         e-shop
         </a>
@@ -81,7 +86,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Mark</h5>
                                 <p class="card-text">Example text to make up product description.</p>
-                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('123456789');">Add to Kart</a>
+                                <a class="btn btn-primary btn-sm" onclick="add_list_item('123456789');">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -91,7 +96,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Jacob</h5>
                                 <p class="card-text">Example text to make up product description.</p>
-                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('223456789');">Add to Kart</a>
+                                <a class="btn btn-primary btn-sm" onclick="add_list_item('223456789');">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -101,7 +106,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Larry</h5>
                                 <p class="card-text">Example text to make up product description.</p>
-                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('323456789');">Add to Kart</a>
+                                <a class="btn btn-primary btn-sm" onclick="add_list_item('323456789');">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -114,7 +119,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Susan</h5>
                                 <p class="card-text">Example text to make up product description.</p>
-                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('423456789');">Add to Kart</a>
+                                <a class="btn btn-primary btn-sm" onclick="add_list_item('423456789');">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -124,7 +129,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Lesley</h5>
                                 <p class="card-text">Example text to make up product description.</p>
-                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('523456789');">Add to Kart</a>
+                                <a class="btn btn-primary btn-sm" onclick="add_list_item('523456789');">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -134,7 +139,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Zoe</h5>
                                 <p class="card-text">Example text to make up product description.</p>
-                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('623456789');">Add to Kart</a>
+                                <a class="btn btn-primary btn-sm" onclick="add_list_item('623456789');">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -157,7 +162,7 @@
                     <input id="discount-code" class="form-control form-control-sm" type="text" placeholder="discount code">
                     <h5 class="subtotal">subtotal: </h5>
                     <div class="item-count">(0 items)</div>
-                    <button class="clear-items" onclick="clear_kart();">clear all</button>
+                    <button class="clear-items" onclick="clear_cart();">clear all</button>
                     <br>
                     <br>
                     <button type="button" class="btn btn-success">continue</button>
@@ -169,9 +174,9 @@
 
         <script>
 
-            // an actuall shopping kart might use browser storage or local storage instead of an empty
+            // an actuall shopping cart might use browser storage or local storage instead of an empty
             // dict, this would maintain values on refresh, ext...
-            var shopping_kart = {};
+            var shopping_cart = {};
 
             var item_list = document.getElementsByClassName('items-list')[0];
             var discount_element = document.getElementById("discount-code");
@@ -204,6 +209,8 @@
                 }
             }
 
+            // simulating some price validation, here we are just formatting the price
+            // so that it s always a valid dollar amount
             function validate_price(price) {
                 try {
                     let result = Number(Math.round((price)+'e2')+'e-2');
@@ -215,42 +222,46 @@
                 }
             }
 
-            // checks whether or not shopping kart already includes Sku, result used to
+            // checks whether or not shopping cart already includes Sku, result used to
             // determine which function should be used to proceed.
-            function checkKart(sku) {
-                if (sku in shopping_kart) {
+            function check_cart(sku) {
+                if (sku in shopping_cart) {
                     return true;
                 } 
                 return false;
             }
 
-            function add_to_kart(sku) {
-                if (shopping_kart[sku] > 1000) {
+            // adds a single item to the cart when the 'add to cart button is used'
+            function add_to_cart(sku) {
+                if (shopping_cart[sku] > 1000) {
                     alert("Stock limit for" + String(sku) + "(1000 units) reached.");
                 } else {
-                    shopping_kart[sku] += 1;
+                    shopping_cart[sku] += 1;
                 }
-                document.getElementById(sku).getElementsByClassName('quantity-input')[0].value = shopping_kart[sku];
+                document.getElementById(sku).getElementsByClassName('quantity-input')[0].value = shopping_cart[sku];
                 document.getElementById(sku).getElementsByClassName('quantity-input')[0].dispatchEvent(event);
             }
 
-            function remove_from_kart(sku) {
-                delete shopping_kart[sku];
+            // removes a single item from cart
+            function remove_from_cart(sku) {
+                delete shopping_cart[sku];
                 document.getElementById(sku).outerHTML = "";
-                updateKart();
+                updatecart();
             }
 
-            function clear_kart() {
+            // removes entire contents of cart
+            function clear_cart() {
                 let items_list = document.getElementsByClassName("items-list")[0];
                 items_list.innerHTML = "";
-                shopping_kart = {};
-                updateKart();
+                shopping_cart = {};
+                updatecart();
             }
 
-            function updateKart() {
+            // upon any input change the cart should be refreshed, validated, discounts applied...
+            function updatecart() {
                 let items_list = document.getElementsByClassName("items-list")[0];
                 var children = items_list.children;
-                let kartTotal = 0;
+                let cartTotal = 0;
                 let itemCount = 0;
 
                 for (var i = 0; i < children.length; i++) {
@@ -264,18 +275,18 @@
                         alert("Cannot exceed 1000 units for " + String(sku));
                     }
                     
-                    shopping_kart[sku] = newAmount;
+                    shopping_cart[sku] = newAmount;
                         
                     // need to add price validation / rounding / ext...
                     // redundant, move this into a function
-                    let calculated = validate_price(shopping_kart[sku] * db[sku]['price']);
+                    let calculated = validate_price(shopping_cart[sku] * db[sku]['price']);
                     document.getElementById(sku).getElementsByClassName('price')[0].innerText = calculated;
 
-                    kartTotal +=  Number(calculated);
-                    itemCount += shopping_kart[sku];
+                    cartTotal +=  Number(calculated);
+                    itemCount += shopping_cart[sku];
                 }
 
-                kartTotal = validate_price(kartTotal);
+                cartTotal = validate_price(cartTotal);
 
                 // should move this into its own function
                 let checkDiscount = discount_element.value;
@@ -286,19 +297,20 @@
                 }
 
                 if (discountResult) {
-                    kartTotal = (kartTotal * (100 - discountResult)) / 100;
-                    kartTotal = validate_price(kartTotal);
+                    cartTotal = (cartTotal * (100 - discountResult)) / 100;
+                    cartTotal = validate_price(cartTotal);
                     var discountMessage = " Includes " + String(discountResult) + "% discount."
                 } else {
                     discountMessage = "";    
                 }
 
-                document.getElementsByClassName("subtotal")[0].innerText = "subtotal: $" + String(kartTotal);
+                document.getElementsByClassName("subtotal")[0].innerText = "subtotal: $" + String(cartTotal);
                 document.getElementsByClassName("item-count")[0].innerText = "(" + String(itemCount) + " items)" + discountMessage;
-                // instead of logging, create an actual event that is triggered when the Kart updates
-                console.log(shopping_kart, "total price in USD: " + kartTotal + discountMessage);
+                // instead of logging, create an actual event that is triggered when the cart updates
+                console.log(shopping_cart, "total price in USD: " + cartTotal + discountMessage);
             }   
 
+            // creates list item element to display product
             function create_list_item(sku) {
                 // validate with up to date sku details from db
                 var item = validate_sku(sku);
@@ -321,9 +333,9 @@
                 inputElem.className = "form-control quantity-input";
                 inputElem.value = 1;
                 inputElem.onchange = function (){
-                    updateKart()
+                    updatecart()
                 };
-                shopping_kart[sku] = 1;
+                shopping_cart[sku] = 1;
                 inputGroup.appendChild(inputElem);
                 quantity.appendChild(inputGroup);
 
@@ -339,7 +351,7 @@
                 button.className = 'btn btn-outline-danger btn-sm';
                 button.innerText = 'remove';
                 button.onclick = function (){
-                    remove_from_kart(sku);
+                    remove_from_cart(sku);
                 };
                 remove_button.appendChild(button);
 
@@ -353,17 +365,19 @@
                 item_list.appendChild(newItem);
             }
 
+            // handles whether item added is new
             function add_list_item(sku_number) {
-                var in_kart = checkKart(sku_number);
+                var in_cart = check_cart(sku_number);
                 
-                if (in_kart) {
-                    add_to_kart(sku_number);
+                if (in_cart) {
+                    add_to_cart(sku_number);
                     return;
                 }
                 create_list_item(sku_number);
-                updateKart();
+                updatecart();
             }
 
+            // simulating discount validation, here we only change some styles
             function validate_discount(discountCode) {
                 let discountElement = discount_element;
                 if (discountCode in discountTable) {
@@ -380,7 +394,7 @@
                 if (discount_element.value == "") {
                     discount_element.style.backgroundColor = "initial";
                 }
-                updateKart();
+                updatecart();
             };
 
         </script>
