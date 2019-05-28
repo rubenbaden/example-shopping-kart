@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Shop example</title>
+    <style>
+        /* additional custom or altered styles */
+        .items-container{
+            padding-right: 30px;
+        }
+        .shop-container{
+            padding: 0;
+        }
+        .card{
+            width: 100% !important;
+            background-color: #f7f7f7;
+        }
+
+        .items-list{
+            line-height: 2;
+        }
+        .quantity-input{
+            max-width: 100px;
+            text-align: center;
+        }
+        .subtotal-container{
+            text-align: right;
+             margin-right: 20px;
+        }
+        .item-count{
+            color:#dc3545;
+        }
+        .clear-items{
+            margin-right: -8px;
+            font-style: italic;
+            color: #a7a7a7;
+            border: none;
+        }
+        .clear-items:hover{
+            color:#dc3545;
+            text-decoration: underline;
+        }
+        .btn-primary {
+            background-color: #3f72af;
+            border-color: #3f72af;
+        }
+        .btn-outline-danger{
+            color: #f69d9d;
+            border-color: #f69d9d;
+        }
+        #discount-code{
+            width: 110px;
+            border-color: #e5e5e5;
+            color: #3f72af;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+        <!-- <img src="https://images.pexels.com/photos/104827/cat-pet-animal-domestic-104827.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" width="30" height="30" class="d-inline-block align-top" alt="e-shop mascot"> -->
+        e-shop
+        </a>
+    </nav>
+    <br>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-sm-8 items-container">
+                <div class="row">
+                    <div class="col-sm shop-item">
+                        <div class="card" style="width: 12rem;">
+                            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Mark</h5>
+                                <p class="card-text">Example text to make up product description.</p>
+                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('123456789');">Add to Kart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm shop-item">
+                        <div class="card" style="width: 12rem;">
+                            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Jacob</h5>
+                                <p class="card-text">Example text to make up product description.</p>
+                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('223456789');">Add to Kart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm shop-item">
+                        <div class="card" style="width: 12rem;">
+                            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Larry</h5>
+                                <p class="card-text">Example text to make up product description.</p>
+                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('323456789');">Add to Kart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm shop-item">
+                        <div class="card" style="width: 12rem;">
+                            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Susan</h5>
+                                <p class="card-text">Example text to make up product description.</p>
+                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('423456789');">Add to Kart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm shop-item">
+                        <div class="card" style="width: 12rem;">
+                            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Lesley</h5>
+                                <p class="card-text">Example text to make up product description.</p>
+                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('523456789');">Add to Kart</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm shop-item">
+                        <div class="card" style="width: 12rem;">
+                            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80" class="card-img-top">
+                            <div class="card-body">
+                                <h5 class="card-title">Zoe</h5>
+                                <p class="card-text">Example text to make up product description.</p>
+                                <a href="#" class="btn btn-primary btn-sm" onclick="add_list_item('623456789');">Add to Kart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4 shop-container">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Item</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price ($)</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="items-list"></tbody>
+                </table>
+                <hr>
+                <div class="subtotal-container">
+                    <input id="discount-code" class="form-control form-control-sm" type="text" placeholder="discount code">
+                    <h5 class="subtotal">subtotal: </h5>
+                    <div class="item-count">(0 items)</div>
+                    <button class="clear-items" onclick="clear_kart();">clear all</button>
+                    <br>
+                    <br>
+                    <button type="button" class="btn btn-success">continue</button>
+                </div>
+                <br>
+            </div>
+        </div>
+        <br>
+
+        <script>
+
+            // an actuall shopping kart might use browser storage or local storage instead of an empty
+            // dict, this would maintain values on refresh, ext...
+            var shopping_kart = {};
+
+            var item_list = document.getElementsByClassName('items-list')[0];
+            var discount_element = document.getElementById("discount-code");
+            var event = new Event('change');
+
+            // current price, avaliable stock, ext... should all be pulled from backend db securely, for sake
+            // of keeping this in the browser as a prototype, here is a simplified db that i'm using:
+            let db = {
+                "123456789" : {"price" : "99.49", "name" : "Mark", "description" : "A small ..."},
+                "223456789" : {"price" : "159.49", "name" : "Jacob", "description" : "A large..."},
+                "323456789" : {"price" : "199.99", "name" : "Larry", "description" : "A friendly ..."},
+                "423456789" : {"price" : "124.99", "name" : "Susan", "description" : "Good for ..."},
+                "523456789" : {"price" : "109.99", "name" : "Lesley", "description" : "Best all around ..."},
+                "623456789" : {"price" : "89.99", "name" : "Zoe", "description" : "Kind and ..."}
+            };
+
+            let discountTable = {
+                "abvRrr9" : {"percent" : 5, "valid" : true},
+                "pear222" : {"percent" : 8, "valid" : true},
+                "apple34" : {"percent" : 4, "valid" : true},
+                "qwertz7" : {"percent" : 15, "valid" : true},
+            };
+            
+            // fetching data should be some secure get/reponse with data validation
+            function validate_sku(sku){
+                try {
+                    return db[sku];
+                } catch (error) {
+                    console.log('item not in db', error);
+                }
+            }
+
+            function validate_price(price) {
+                try {
+                    let result = Number(Math.round((price)+'e2')+'e-2');
+                    result = Number(result).toFixed(2);
+                    return result;
+                } catch (error) {
+                    console.log(error);
+                    return error;
+                }
+            }
+
+            // checks whether or not shopping kart already includes Sku, result used to
+            // determine which function should be used to proceed.
+            function checkKart(sku) {
+                if (sku in shopping_kart) {
+                    return true;
+                } 
+                return false;
+            }
+
+            function add_to_kart(sku) {
+                if (shopping_kart[sku] > 1000) {
+                    alert("Stock limit for" + String(sku) + "(1000 units) reached.");
+                } else {
+                    shopping_kart[sku] += 1;
+                }
+                document.getElementById(sku).getElementsByClassName('quantity-input')[0].value = shopping_kart[sku];
+                document.getElementById(sku).getElementsByClassName('quantity-input')[0].dispatchEvent(event);
+            }
+
+            function remove_from_kart(sku) {
+                delete shopping_kart[sku];
+                document.getElementById(sku).outerHTML = "";
+                updateKart();
+            }
+
+            function clear_kart() {
+                let items_list = document.getElementsByClassName("items-list")[0];
+                items_list.innerHTML = "";
+                shopping_kart = {};
+                updateKart();
+            }
+
+            function updateKart() {
+                let items_list = document.getElementsByClassName("items-list")[0];
+                var children = items_list.children;
+                let kartTotal = 0;
+                let itemCount = 0;
+
+                for (var i = 0; i < children.length; i++) {
+                    var tableChild = children[i];
+                    let sku = tableChild.id;
+                    // Number input validation should not be done here - handle upon value entry
+                    let newAmount = Number(tableChild.getElementsByClassName("quantity-input")[0].value);
+                    if (newAmount > 1000) {
+                        newAmount = 1000,
+                        tableChild.getElementsByClassName("quantity-input")[0].value = 1000;
+                        alert("Cannot exceed 1000 units for " + String(sku));
+                    }
+                    
+                    shopping_kart[sku] = newAmount;
+                        
+                    // need to add price validation / rounding / ext...
+                    // redundant, move this into a function
+                    let calculated = validate_price(shopping_kart[sku] * db[sku]['price']);
+                    document.getElementById(sku).getElementsByClassName('price')[0].innerText = calculated;
+
+                    kartTotal +=  Number(calculated);
+                    itemCount += shopping_kart[sku];
+                }
+
+                kartTotal = validate_price(kartTotal);
+
+                // should move this into its own function
+                let checkDiscount = discount_element.value;
+                if (!(checkDiscount == "")) {
+                    discountResult = validate_discount(checkDiscount);
+                } else {
+                    discountResult = false;
+                }
+
+                if (discountResult) {
+                    kartTotal = (kartTotal * (100 - discountResult)) / 100;
+                    kartTotal = validate_price(kartTotal);
+                    var discountMessage = " Includes " + String(discountResult) + "% discount."
+                } else {
+                    discountMessage = "";    
+                }
+
+                document.getElementsByClassName("subtotal")[0].innerText = "subtotal: $" + String(kartTotal);
+                document.getElementsByClassName("item-count")[0].innerText = "(" + String(itemCount) + " items)" + discountMessage;
+                // instead of logging, create an actual event that is triggered when the Kart updates
+                console.log(shopping_kart, "total price in USD: " + kartTotal + discountMessage);
+            }   
+
+            function create_list_item(sku) {
+                // validate with up to date sku details from db
+                var item = validate_sku(sku);
+                var item_name = item['name'];
+                var item_cost = item['price'];
+
+                var newItem = document.createElement('tr');
+                newItem.id = sku;
+
+                // building item name element
+                var itemName = document.createElement('td');
+                itemName.innerText = item_name;
+
+                // building quantity element
+                var quantity = document.createElement('td');
+                var inputGroup = document.createElement('div');
+                inputGroup.className = 'input-group input-group-sm mb-3';
+                var inputElem = document.createElement('input');
+                inputElem.type = "text";
+                inputElem.className = "form-control quantity-input";
+                inputElem.value = 1;
+                inputElem.onchange = function (){
+                    updateKart()
+                };
+                shopping_kart[sku] = 1;
+                inputGroup.appendChild(inputElem);
+                quantity.appendChild(inputGroup);
+
+                // building price element
+                var priceElem = document.createElement('td');
+                priceElem.className = "price";
+                priceElem.innerText = item_cost;
+
+                // building remove item element
+                var remove_button = document.createElement('td');
+                var button = document.createElement('button');
+                button.type = 'button';
+                button.className = 'btn btn-outline-danger btn-sm';
+                button.innerText = 'remove';
+                button.onclick = function (){
+                    remove_from_kart(sku);
+                };
+                remove_button.appendChild(button);
+
+                //adding children to new item
+                newItem.appendChild(itemName);
+                newItem.appendChild(quantity);
+                newItem.appendChild(priceElem);
+                newItem.appendChild(remove_button);
+                
+                //adding new item to item lis
+                item_list.appendChild(newItem);
+            }
+
+            function add_list_item(sku_number) {
+                var in_kart = checkKart(sku_number);
+                
+                if (in_kart) {
+                    add_to_kart(sku_number);
+                    return;
+                }
+                create_list_item(sku_number);
+                updateKart();
+            }
+
+            function validate_discount(discountCode) {
+                let discountElement = discount_element;
+                if (discountCode in discountTable) {
+                    discountElement.style.backgroundColor = "initial";
+                    discountElement.style.color = "#28a745";
+                    return discountTable[discountCode]["percent"];
+                }
+                discountElement.style.backgroundColor = "#f69d9d";
+                discountElement.style.color = "#dc3545";
+                return false
+            }
+
+            discount_element.onchange = function (){
+                if (discount_element.value == "") {
+                    discount_element.style.backgroundColor = "initial";
+                }
+                updateKart();
+            };
+
+        </script>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
